@@ -196,7 +196,7 @@ export FIREWALLRULENAME="AllowAllIps$(date +%s)"
 az mariadb server firewall-rule create -g "$SOURCE_RESOURCE_GROUP_NAME" -s "$SOURCE_SERVER_NAME" -n "$FIREWALLRULENAME" --start-ip-address "0.0.0.0" --end-ip-address "255.255.255.255"
 
 # Export mariadb password to be used by the mysqldump command
-export MARIADB_PWD=$SOURCE_PASSWORD
+export MYSQL_PWD=$SOURCE_PASSWORD
 
 # Remove dump file if it already exists
 [ -e "$SOURCE_DATABASE_NAME.sql" ] && rm -f "$SOURCE_DATABASE_NAME.sql"
@@ -214,19 +214,16 @@ fi
 az account set --subscription "$TARGET_SUBSCRIPTION_ID"
 
 # Set target server password
-export MARIADB_PWD=$TARGET_PASSWORD
+export MYSQL_PWD=$TARGET_PASSWORD
 
 # Create the target server in the specified region
-az mariadb server create -l "$TARGET_REGION" -g "$TARGET_RESOURCE_GROUP_NAME" -n "$TARGET_SERVER_NAME" -u "$TARGET_USERNAME" -p "$MARIADB_PWD" --sku-name "$TARGET_SKU"
+az mariadb server create -l "$TARGET_REGION" -g "$TARGET_RESOURCE_GROUP_NAME" -n "$TARGET_SERVER_NAME" -u "$TARGET_USERNAME" -p "$MYSQL_PWD" --sku-name "$TARGET_SKU"
 
 # Create the target database
 az mariadb db create -g "$TARGET_RESOURCE_GROUP_NAME" -s "$TARGET_SERVER_NAME" -n "$TARGET_DATABASE_NAME"
 
 # Create firewall rule on the target server to allow connections from current VM
 az mariadb server firewall-rule create -g "$TARGET_RESOURCE_GROUP_NAME" -s "$TARGET_SERVER_NAME" -n "$FIREWALLRULENAME" --start-ip-address "0.0.0.0" --end-ip-address "255.255.255.255"
-
-# Export MariaDB database name to be used by the mysql command
-export MARIADB_DATABASE=$TARGET_DATABASE_NAME
 
 # Restore the database using source database dump file
 mysql --ssl-mode=REQUIRED -v --host="$TARGET_SERVER_NAME.mariadb.database.azure.com" --port=3306 --user="$TARGET_USERNAME@$TARGET_SERVER_NAME" < "$SOURCE_DATABASE_NAME.sql"
