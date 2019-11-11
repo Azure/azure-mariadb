@@ -60,7 +60,7 @@
         },
         "version": {
             "type": "string",
-            "defaultValue": "5.7",
+            "defaultValue": "10.2",
             "metadata": {
                 "description": "MariaDB Version"
             }
@@ -288,7 +288,7 @@
             },
             "kind": "",
             "name": "[variables('mariadbServerName')]",
-            "apiVersion": "2017-12-01",
+            "apiVersion": "2018-06-01",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
