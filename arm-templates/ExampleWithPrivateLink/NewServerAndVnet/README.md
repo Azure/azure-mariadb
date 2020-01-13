@@ -34,11 +34,11 @@ integrated with a [Private DNS Zone](https://docs.microsoft.com/en-us/azure/dns/
 
 Click on the **Deploy to Azure** button above to deploy the ARM Template **parentTemplate.json**
 
-Once you have deployed the ARM Template **successfully without any errors**, you will be able to connect to the MariaDB Server from the Client VM using mariadb command. 
+Once you have deployed the ARM Template **successfully without any errors**, you will be able to connect to the MariaDB Server from the Client VM using mysql command. 
 
-For hostname in the mariadb command, we can use either the private IP address or the FQDN since the VNET is integrated with Private DNS Zone and we have an A record pointing the FQDN to the Private IP address of the MariaDB Server. 
+For hostname in the mysql command, we can use either the private IP address or the FQDN since the VNET is integrated with Private DNS Zone and we have an A record pointing the FQDN to the Private IP address of the MariaDB Server. 
 
-Remote Desktop into the Client VM, install mariadb commandline and run the following command to connect to the MariaDB Server securely : 
+Remote Desktop into the Client VM, install mysql commandline and run the following command to connect to the MariaDB Server securely : 
 
 ```
 mysql --host={privateIPAddress} --port=3306 --database={your_database} --user={your_username} --ssl-mode=REQUIRED --password={your_password}
