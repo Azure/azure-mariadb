@@ -5,10 +5,10 @@
         "privateEndpointName": {
             "value": "MyPrivateEndpoint"
         },
-		"mariadbServerResourceId": {
+        "mariadbServerResourceId": {
             "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myRG/providers/Microsoft.DBforMariaDB/servers/mariadbserver"
         },
-		"subnetId": {
+        "subnetId": {
             "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myRG/providers/Microsoft.Network/virtualNetworks/myVNET/subnets/mysubnet"
         }
     }

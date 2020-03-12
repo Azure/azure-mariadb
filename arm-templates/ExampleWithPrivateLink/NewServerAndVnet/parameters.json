@@ -4,15 +4,15 @@
     "parameters": {
         "vmUsername": {
             "value": "azureuser"
-        },	
-		"vmPassword": {
+        },
+        "vmPassword": {
             "value": "GEN-PASSWORD"
         },
         "mariadbUsername": {
             "value": "mariadbuser"
         },
         "mariadbPassword": {
-             "value": "GEN-PASSWORD"
+            "value": "GEN-PASSWORD"
         }
     }
 }
