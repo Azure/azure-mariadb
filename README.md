@@ -8,6 +8,10 @@ description: "Add 150 character max description"
 urlFragment: "update-this-to-unique-url-stub"
 ---
 
+--------------------------------
+This repository has been archived due to sustained lack of activity as noted in issue: [https://github.com/Azure/azure-mariadb/issues/14](https://github.com/Azure/azure-mariadb/issues/14)
+--------------------------------
+
 # Official Microsoft Sample
 
 <!-- 
